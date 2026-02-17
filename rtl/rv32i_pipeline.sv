@@ -6,14 +6,14 @@
 // 
 // ================================================================
 `timescale 1ns/1ps
-module RV32I_Pipline #(
-  parameter int    DEPTH_WORDS = 2048
+module rv32i_pipeline #(
+  parameter int    DEPTH_WORDS = 4116
 )(
   input  logic clk,
-  input  logic rst_n,
+  input  logic rst_n
   
-  input  logic [7:0] sw,
-  output logic [7:0] led
+  //input  logic [7:0] sw,
+  //output logic [7:0] led
 
   // single_cycle.sv: khai báo port
   //output logic [31:0] a0_out
@@ -46,7 +46,7 @@ module RV32I_Pipline #(
   /////////////////////////////
 
   // Decoder
-  opcode_t     opcode_ID;
+  logic [6:0]  opcode_ID;
   logic [4:0]  rd_ID;
   funct3_t     funct3_ID;
   logic [4:0]  rs1_ID;
@@ -71,13 +71,13 @@ module RV32I_Pipline #(
   /////////////////////////////
 
   // Decoder -> EX
-  opcode_t opcode_EX;
+  logic [6:0] opcode_EX;
   logic [4:0] rs1_EX, rs2_EX;
   logic [4:0] rd_EX;
   funct3_t funct3_EX;
 
   // PC_EX, rs1_EX, rs2_EX, imm_EX, rd_EX, inst_EX
-  logic [31:0] pc_EX, dataR1_EX, dataR2_EX, imm_EX, inst_EX;
+  logic [31:0] pc_EX, dataR1_EX, dataR2_EX, imm_EX;
 
   // giữ control tới EX
   ctrl_t ctrl_EX;
@@ -124,7 +124,7 @@ module RV32I_Pipline #(
   logic [4:0] rd_WB;
 
   // PC4_WB, alu_WB, mem_WB + control tới WB
-  logic [31:0] pc_plus4_mem_WB, alu_WB, mem_WB, inst_WB;
+  logic [31:0] pc_plus4_mem_WB, alu_WB, mem_WB;
 
   // Control sang WB
   ctrl_t ctrl_WB;
@@ -165,7 +165,7 @@ module RV32I_Pipline #(
   // ------------------------------
   // Instruction memory 
   // ------------------------------
-  IMEM #(
+  imem #(
     .DEPTH_WORDS(DEPTH_WORDS)
   )u_imem (
     .rst_n (rst_n),
@@ -209,27 +209,27 @@ module RV32I_Pipline #(
   // Control Logic
   // ------------------------------
   Control_Logic u_ctrl (
-    .opcode (opcode_ID),
-    .funct3 (funct3_ID),
-    .funct7 (funct7_ID),
-    //.BrEq   (BrEq),
-    //.BrLT   (BrLT),     // LƯU Ý: dùng đúng tên cổng đã sửa trong Control_Logic
-    //.PCSel  (ctrl.PCSel),
-    .ImmSel (ctrl.ImmSel),
-    .BrUn   (ctrl.BrUn),
-    .ASel   (ctrl.ASel),
-    .BSel   (ctrl.BSel),
-    .ALUSel (ctrl.ALUSel),
-    .MemRW  (ctrl.MemRW),
-    .RegWEn (ctrl.RegWEn),
-    .WBSel  (ctrl.WBSel)
+      .opcode (opcode_t'(opcode_ID)),
+      .funct3 (funct3_ID),
+      .funct7 (funct7_ID),
+  
+      .ImmSel      (ctrl.ImmSel),
+      .BrUn        (ctrl.BrUn),
+      .ASel        (ctrl.ASel),
+      .BSel        (ctrl.BSel),
+      .ALUSel      (ctrl.ALUSel),
+      .MemRW       (ctrl.MemRW),
+      .MemUnsigned (ctrl.MemUnsigned),   // THÊM
+      .MemSize     (ctrl.MemSize),       // THÊM
+      .RegWEn      (ctrl.RegWEn),
+      .WBSel       (ctrl.WBSel)
   );
 
   // ------------------------------
   // Immediate Generator
   // ------------------------------
   ImmGen u_immgen (
-    .inst   (inst_imm_ID),
+    .inst_imm   (inst_imm_ID),
     .ImmSel (ctrl.ImmSel),
     .imm    (imm)
   );
@@ -242,7 +242,7 @@ module RV32I_Pipline #(
     .rst_n (rst_n),
     .rsR1  (rs1_ID),
     .rsR2  (rs2_ID),
-    .rsW   (rd_ID),
+    .rsW   (rd_WB),
     .dataW (WBdata),
     .RegWEn(ctrl_WB.RegWEn),
     .dataR1(dataR1),
@@ -252,7 +252,7 @@ module RV32I_Pipline #(
   // ---------- ID/EX pipeline registers ----------
 
   // Decoder -> EX
-  pipe_reg #(.W(6)) u_opcode_EX (.clk(clk), .rst_n(rst_n), .en(1'b1), .flush(stall | PCSel), .d(opcode_ID),   .bubble(6'b0),          .q(opcode_EX));
+  pipe_reg #(.W(7)) u_opcode_EX (.clk(clk), .rst_n(rst_n), .en(1'b1), .flush(stall | PCSel), .d(opcode_ID),   .bubble(7'b0),          .q(opcode_EX));
   pipe_reg #(.W(3)) u_funct3_EX (.clk(clk), .rst_n(rst_n), .en(1'b1), .flush(stall | PCSel), .d(funct3_ID),   .bubble(3'b0),          .q(funct3_EX));
   pipe_reg #(.W(5)) u_rd_EX     (.clk(clk), .rst_n(rst_n), .en(1'b1), .flush(stall | PCSel), .d(rd_ID),       .bubble(5'b0),          .q(rd_EX));
   pipe_reg #(.W(5)) u_rs1_EX    (.clk(clk), .rst_n(rst_n), .en(1'b1), .flush(stall | PCSel), .d(rs1_ID),      .bubble(5'b0),          .q(rs1_EX));
@@ -333,7 +333,7 @@ module RV32I_Pipline #(
   // Branch Control
   // ------------------------------
   pc_selection u_pc_sel (
-    .opcode_EX(opcode_EX),
+    .opcode_EX(opcode_t'(opcode_EX)),
     .funct3_EX(funct3_EX),
     .BrEq(BrEq),
     .BrLT(BrLT),
@@ -363,10 +363,12 @@ module RV32I_Pipline #(
     .addr  (alu_MEM),        // address từ ALU
     .dataW (dataR2_MEM),     // store dữ liệu từ rs2
     .MemRW (ctrl_MEM.MemRW),      // 1: write, 0: read
-    .dataR (mem),  // read data
+    .MemSize(ctrl_MEM.MemSize),
+    .MemUnsigned(ctrl_MEM.MemUnsigned),
+    .dataR (mem)  // read data
 	 
-	  .sw    (sw),
-    .led   (led)
+	//.sw    (sw),
+    //.led   (led)
   );
 
   // ------------------------------
@@ -405,10 +407,10 @@ module RV32I_Pipline #(
   // Hazards Detect
   // ------------------------------
   Hazard_Detection u_hazard (
-    .opcode_ID(opcode_ID),
+    .opcode_ID(opcode_t'(opcode_ID)),
     .rs1_ID(rs1_ID),
     .rs2_ID(rs2_ID),
-    .opcode_EX(opcode_EX),
+    .opcode_EX(opcode_t'(opcode_EX)),
     .rd_EX(rd_EX),
     .stall(stall)
   );

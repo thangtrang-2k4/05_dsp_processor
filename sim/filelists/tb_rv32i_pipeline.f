@@ -1,7 +1,7 @@
 ../rtl/rv32_pkg.sv
 ../rtl/adder.sv
 ../rtl/alu.sv
-../rtl/branchh_comparator.sv
+../rtl/branch_comparator.sv
 ../rtl/control_logic.sv
 ../rtl/data_memory.sv
 ../rtl/decoder.sv
@@ -13,5 +13,6 @@
 ../rtl/pc.sv
 ../rtl/pipe_reg.sv
 ../rtl/regfile.sv
+../rtl/rv32i_pipeline.sv
    
 ../tb/tb_rv32i_pipeline.sv

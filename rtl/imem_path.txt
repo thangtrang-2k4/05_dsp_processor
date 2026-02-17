@@ -1,0 +1,1 @@
+/home/trangthang/Workspace/02_Project/01_GitHub/05_rv32i_P_extension/sw/load_store_test/load_store.hex

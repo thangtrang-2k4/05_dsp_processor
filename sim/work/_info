@@ -1,0 +1,448 @@
+m255
+K4
+z2
+!s99 nomlopt
+!s11f vlog 2021.2_1 2021.05, May 15 2021
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 d/home/trangthang/Workspace/02_Project/01_GitHub/05_rv32i_P_extension/sim
+T_opt
+!s110 1771313899
+VoJQI7DjOWR4kQTSR`T3BE3
+04 17 4 work tb_rv32i_pipeline fast 0
+=1-000ae431a4f1-69941aeb-c7a4-1403
+!s124 OEM100
+o-quiet -auto_acc_if_foreign -work work -debugdb +acc
+Z1 tCvgOpt 0
+n@_opt
+OL;O;2021.2_1;73
+vAdder
+Z2 DXx6 sv_std 3 std 0 22 9oUSJO;AeEaW`l:M@^WG92
+Z3 !s110 1771313897
+!i10b 1
+!s100 L?M<b3M2DjUT<C@:`6BjZ3
+Iz_IMMGlbHInbj:];=Ao9B3
+S1
+R0
+Z4 w1771134860
+8../rtl/adder.sv
+F../rtl/adder.sv
+!i122 0
+L0 1 6
+Z5 VDg1SIo80bB@j0V0VzS_@n1
+Z6 OL;L;2021.2_1;73
+r1
+!s85 0
+31
+Z7 !s108 1771313897.000000
+Z8 !s107 ../tb/tb_rv32i_pipeline.sv|../rtl/rv32i_pipeline.sv|../rtl/regfile.sv|../rtl/pipe_reg.sv|../rtl/pc.sv|../rtl/pc_selection.sv|../rtl/immgen.sv|../rtl/imem.sv|../rtl/hazard_detection.sv|../rtl/forwarding_unit.sv|../rtl/decoder.sv|../rtl/data_memory.sv|../rtl/control_logic.sv|../rtl/branch_comparator.sv|../rtl/alu.sv|../rtl/adder.sv|../rtl/rv32_pkg.sv|
+Z9 !s90 -f|filelists/tb_rv32i_pipeline.f|
+!i113 0
+Z10 o-L mtiAvm -L mtiRnm -L mtiOvm -L mtiUvm -L mtiUPF -L infact
+R1
+n@adder
+vALU
+R2
+Z11 DXx4 work 8 rv32_pkg 0 22 4z:7YIm?Y`^G;4Ig6<lM72
+R3
+!i10b 1
+!s100 b@^XIO;5_8=C<CB9<JRAX2
+IJ@okT0CjRa36SU>eF2G6T1
+S1
+R0
+R4
+8../rtl/alu.sv
+F../rtl/alu.sv
+!i122 0
+L0 1 37
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+n@a@l@u
+vBranch_Comparator
+R2
+R3
+!i10b 1
+!s100 4efZhmZ@ACXc@X5KK[iQ_2
+IB2MN;CQ2T0<[O_LdYB9iP1
+S1
+R0
+R4
+8../rtl/branch_comparator.sv
+F../rtl/branch_comparator.sv
+!i122 0
+L0 2 13
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+n@branch_@comparator
+vControl_Logic
+R2
+R11
+R3
+!i10b 1
+!s100 9`^zjc<1dSO;z6bBd92HM2
+I;1@:Zz5mn9f5lgjRdSE1W3
+S1
+R0
+w1771139841
+8../rtl/control_logic.sv
+F../rtl/control_logic.sv
+!i122 0
+L0 168 229
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+n@control_@logic
+vData_Memory
+R2
+R3
+!i10b 1
+!s100 :DckmYIe>?Bd_RTI?GJ]33
+IZ9blHU=R`QBFHhjDC8RGF0
+S1
+R0
+w1771196075
+8../rtl/data_memory.sv
+F../rtl/data_memory.sv
+!i122 0
+L0 1 143
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+n@data_@memory
+vdecoder
+R2
+R11
+R3
+!i10b 1
+!s100 gl@kBJnRmM[G`ZP7GQE@`0
+IklGjRS:L1RW<QTeMl5E4S3
+S1
+R0
+w1771139977
+8../rtl/decoder.sv
+F../rtl/decoder.sv
+!i122 0
+L0 1 21
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+vForwarding_Unit
+R2
+R11
+R3
+!i10b 1
+!s100 __]<MUjJM`UZHKcoDXigL0
+I^E=b7X<Ql_mK=FRe;f<So1
+S1
+R0
+R4
+8../rtl/forwarding_unit.sv
+F../rtl/forwarding_unit.sv
+!i122 0
+Z12 L0 1 38
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+n@forwarding_@unit
+vHazard_Detection
+R2
+R11
+R3
+!i10b 1
+!s100 2>D5oH3IcV`BOW@eEH4Q^2
+IVn47XSM3X;TdTdmVRER5i2
+S1
+R0
+R4
+8../rtl/hazard_detection.sv
+F../rtl/hazard_detection.sv
+!i122 0
+R12
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+n@hazard_@detection
+vimem
+R2
+R3
+!i10b 1
+!s100 V^g`eTNefCzm5kl91Q:DL0
+IfE7Lb>EXmS4P@ebZonk743
+S1
+R0
+w1771310929
+8../rtl/imem.sv
+F../rtl/imem.sv
+!i122 0
+L0 1 53
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+vImmGen
+R2
+R11
+R3
+!i10b 1
+!s100 GImoT5UkG3M4<AUUOTX4J2
+IlXeeGaD9;79n?c`=O]>Ph2
+S1
+R0
+w1771140074
+8../rtl/immgen.sv
+F../rtl/immgen.sv
+!i122 0
+L0 1 18
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+n@imm@gen
+vpc_selection
+R2
+R11
+R3
+!i10b 1
+!s100 Q4[<5l:zejZmch2z54lBZ0
+I?`o`JlfoHI<fTSb8>77@V0
+S1
+R0
+R4
+8../rtl/pc_selection.sv
+F../rtl/pc_selection.sv
+!i122 0
+L0 5 43
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+vpipe_reg
+R2
+R3
+!i10b 1
+!s100 ]U_TA;OjVOaHOAOe?7d0M0
+IiIIPGT:U3CZBk_J7@E^9M0
+S1
+R0
+R4
+8../rtl/pipe_reg.sv
+F../rtl/pipe_reg.sv
+!i122 0
+L0 1 25
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+vProgram_Counter
+R2
+R3
+!i10b 1
+!s100 jhm]c_VelQbjH>5b?3RdE0
+IVoALC:9h=8IXfR8[bKF650
+S1
+R0
+R4
+8../rtl/pc.sv
+F../rtl/pc.sv
+!i122 0
+L0 1 12
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+n@program_@counter
+vRegFile
+R2
+R3
+!i10b 1
+!s100 OU4Bac@SZB4PeNFD^N<d32
+If[Tzgeghb=^3_oSc7kJ1_1
+S1
+R0
+R4
+8../rtl/regfile.sv
+F../rtl/regfile.sv
+!i122 0
+L0 1 41
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+n@reg@file
+Xrv32_pkg
+R2
+R3
+!i10b 1
+!s100 NgF;G48`f2Rj8L>5@zU:L3
+I4z:7YIm?Y`^G;4Ig6<lM72
+S1
+R0
+w1771144889
+8../rtl/rv32_pkg.sv
+F../rtl/rv32_pkg.sv
+!i122 0
+L0 1 0
+V4z:7YIm?Y`^G;4Ig6<lM72
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+vrv32i_pipeline
+R2
+R11
+R3
+!i10b 1
+!s100 O6DoO6T>omR0o@j9IIJcJ3
+I`G[c6`5JPhHj;M9A7Mc7B0
+S1
+R0
+w1771195834
+8../rtl/rv32i_pipeline.sv
+F../rtl/rv32i_pipeline.sv
+!i122 0
+L0 9 419
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1
+vtb_rv32i_pipeline
+R2
+R3
+!i10b 1
+!s100 jI8;c[8]>?9AgH42:Jb]63
+IEHn1e8jBohoN9hYIh^0nI3
+S1
+R0
+w1771169098
+8../tb/tb_rv32i_pipeline.sv
+F../tb/tb_rv32i_pipeline.sv
+!i122 0
+L0 3 31
+R5
+R6
+r1
+!s85 0
+31
+R7
+R8
+R9
+!i113 0
+R10
+R1

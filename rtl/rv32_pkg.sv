@@ -119,6 +119,8 @@ package rv32_pkg;
     logic              BSel;
     rv32_pkg::ALUSel_t ALUSel;
     logic              MemRW;
+    logic [1:0]        MemSize;    
+    logic              MemUnsigned;
     logic              RegWEn;
     rv32_pkg::WBSel_t  WBSel;
   } ctrl_t;
@@ -166,15 +168,16 @@ package rv32_pkg;
   // ==============================
 
   localparam ctrl_t CTRL_NOP = '{
-    //PCSel : PC_PC4,
-    ImmSel: Imm_I,   // tùy bạn, miễn hợp lệ
-    BrUn  : 1'b0,
-    ASel  : 1'b0,
-    BSel  : 1'b0,
-    ALUSel: ALU_ADD,
-    MemRW : 1'b0,
-    RegWEn: 1'b0,
-    WBSel : WB_ALU
+      ImmSel     : Imm_I,      // không quan trọng lắm
+      BrUn       : 1'b0,
+      ASel       : 1'b0,
+      BSel       : 1'b0,
+      ALUSel     : ALU_ADD,    // ADD cho an toàn
+      MemRW      : 1'b0,       // ❗ không ghi memory
+      MemUnsigned: 1'b0,       // không quan trọng
+      MemSize    : 2'b10,      // mặc định word (LW)
+      RegWEn     : 1'b0,       // ❗ không ghi register
+      WBSel      : WB_ALU
   };
 
   localparam if_id_t IF_ID_BUBBLE = '{

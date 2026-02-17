@@ -179,8 +179,8 @@ module Control_Logic (
                       output logic              BSel,
                       output rv32_pkg::ALUSel_t ALUSel,
                       output logic              MemRW,
-                      output logic [1:0]        MemSize;     // 00=byte, 01=half, 10=word
-                      output logic              MemUnsigned; // 1 = zero extend
+                      output logic [1:0]        MemSize,     // 00=byte, 01=half, 10=word
+                      output logic              MemUnsigned, // 1 = zero extend
                       output logic              RegWEn,
                       output rv32_pkg::WBSel_t  WBSel
 );

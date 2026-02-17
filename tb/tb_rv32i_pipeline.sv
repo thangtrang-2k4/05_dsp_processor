@@ -1,12 +1,12 @@
-timescale 1ns/1ps
+`timescale 1ns/1ps
 
-module tB_rv32i_pipeline;
+module tb_rv32i_pipeline;
   
-  logic clk,
-  logic rst_n,
+  logic clk;
+  logic rst_n;
   
-  module RV32I_Pipline #(
-    parameter int    DEPTH_WORDS = 2048
+  rv32i_pipeline #(
+    .DEPTH_WORDS(2048)
   ) dut (
     .clk(clk),  
     .rst_n(rst_n)
@@ -19,13 +19,15 @@ module tB_rv32i_pipeline;
 
   );
 
+  initial clk = '0;
+
   always #5 clk = ~clk;
   
   initial begin 
     clk = 0;
     rst_n =0;
     #10 rst_n = 1;
-    #1000 $finish;
+    #1200 $finish;
   end
 
 endmodule

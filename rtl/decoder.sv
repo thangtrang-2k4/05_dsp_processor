@@ -10,7 +10,7 @@ module decoder (
 );
     import rv32_pkg::*;
 
-    assign opcode   = inst[6:0];
+    assign opcode   = opcode_t'(inst[6:0]);
     assign rd       = inst[11:7];
     assign funct3   = inst[14:12];
     assign rs1      = inst[19:15];

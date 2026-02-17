@@ -1,4 +1,4 @@
-module IMEM #(
+module imem #(
     parameter int    DEPTH_WORDS = 1024
 )(
              input  logic rst_n,
@@ -13,30 +13,41 @@ module IMEM #(
     if (!rst_n)
       inst = 32'd0;
     else if (addr[31:2] < DEPTH_WORDS)
-      inst = {inst_mem[addr[31:2]], inst_mem[addr[31:2]+1], inst_mem[addr[31:2]+2], inst_mem[addr[31:2]+3]};
+      inst = {inst_mem[addr], inst_mem[addr+1], inst_mem[addr+2], inst_mem[addr+3]};
     else
       inst = 32'h00000013;
   end
   // ==== nạp nội dung chương trình ====
-  initial begin
-      string path;
-      int file;
+initial begin
+    string path;
+    int file;
 
-      file = $fopen("../../rtl_pipelined/instmem_path.txt", "r");
+    file = $fopen("../rtl/imem_path.txt", "r");
 
-      if (file)
-          $display("Instr file opened successfully");
-      else
-          $display("File could not be opened, %0d", file);
+    if (!file) begin
+        $display("ERROR: Cannot open imem_path.txt");
+        $finish;
+    end
 
-      $fgets(path, file);
-      $display("path: %s", path);
+    void'($fgets(path, file));
+    $fclose(file);
 
-      $fclose(file);
+    // remove '\n'
+    if (path.len() > 0 && path[path.len()-1] == 8'h0A)
+        path = path.substr(0, path.len()-2);
 
-      $display("Loading instruction memory...");
-      $readmemh(path, inst_mem);
-      $display("Instruction memory loaded....");
-  end
+    // remove '\r'
+    if (path.len() > 0 && path[path.len()-1] == 8'h0D)
+        path = path.substr(0, path.len()-2);
+
+    $display("Loading instruction memory from: '%s'", path);
+
+    $readmemh(path, inst_mem);
+
+    $display("Instruction memory loaded.");
+end
+//  initial begin
+//    $readmemh("/home/trangthang/Workspace/02_Project/01_GitHub/05_rv32i_P_extension/sw/hazards_test/hazards_program_all.mem", inst_mem);
+//  end
 
 endmodule

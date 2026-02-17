@@ -1,0 +1,26 @@
+QuestaSim-64 vlog 2021.2_1 Compiler 2021.05 May 15 2021
+Start time: 14:38:17 on Feb 17,2026
+vlog -f filelists/tb_rv32i_pipeline.f 
+-- Compiling package rv32_pkg
+-- Compiling module Adder
+-- Compiling module ALU
+-- Importing package rv32_pkg
+-- Compiling module Branch_Comparator
+-- Compiling module Control_Logic
+-- Compiling module Data_Memory
+-- Compiling module decoder
+-- Compiling module Forwarding_Unit
+-- Compiling module Hazard_Detection
+-- Compiling module imem
+-- Compiling module ImmGen
+-- Compiling module pc_selection
+-- Compiling module Program_Counter
+-- Compiling module pipe_reg
+-- Compiling module RegFile
+-- Compiling module rv32i_pipeline
+-- Compiling module tb_rv32i_pipeline
+
+Top level modules:
+	tb_rv32i_pipeline
+End time: 14:38:17 on Feb 17,2026, Elapsed time: 0:00:00
+Errors: 0, Warnings: 0
